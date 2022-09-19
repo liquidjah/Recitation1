@@ -23,9 +23,18 @@ def encrypt(message, password):
     return encrypted_message
 
 
-def decrypt(message, key):
-    decrypted_message = encrypt(message, -key)
-    return decrypted_message
+def decrypt(message, password):
+    encrypted_message = ''
+    password = math.ceil(len(message) / len(password)) * password
+    for i, ch in enumerate(message):
+        pass_ch = password[i]
+        key = ordinal_value[pass_ch]
+        ord_of_ch = ordinal_value[ch]
+        shifted_ord_of_ch = (ord_of_ch - key) % len(alphabet)
+        encrypted_ch = alphabet[shifted_ord_of_ch]
+        encrypted_message += encrypted_ch
+
+    return encrypted_message
 
 
 if __name__ == "__main__":
